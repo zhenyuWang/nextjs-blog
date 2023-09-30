@@ -1,3 +1,11 @@
+import Hero from '@/components/home-page/hero'
+import FeaturedPosts from '@/components/home-page/featured-posts'
+
 export default function HomePage() {
-  return <h1>Home Page</h1>
+  return (
+    <>
+      <Hero />
+      <FeaturedPosts posts={[]} />
+    </>
+  )
 }
