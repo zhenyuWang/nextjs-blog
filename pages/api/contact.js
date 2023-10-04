@@ -17,17 +17,15 @@ export default async function handler(req, res) {
 
     let client
     try {
-      const USERNAME = 'running-snail'
-      const PASSWORD = 'password'
       client = await MongoClient.connect(
-        `mongodb+srv://${USERNAME}:${PASSWORD}@nextjs-study.grl6f0z.mongodb.net/?retryWrites=true&w=majority`
+        `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER_NAME}.mongodb.net/?retryWrites=true&w=majority`
       )
     } catch (error) {
       res.status(500).json({ message: 'Could not connect to database.' })
       return
     }
 
-    const db = client.db('nextjs-blog')
+    const db = client.db(process.env.DB_DATABASE_NAME)
 
     try {
       const result = await db.collection('messages').insertOne(newMessage)
